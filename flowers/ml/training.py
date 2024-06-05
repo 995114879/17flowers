@@ -3,13 +3,13 @@ import sys
 
 
 sys.path.append(os.path.abspath(os.path.join(__file__, "..", "..")))
-from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 import joblib
 
-from ..tools import extract_feature
+
+from . import extract_feature_from_img_path
 
 
 def run(
@@ -36,7 +36,7 @@ def run(
     print(label_2_idx)
 
     # 2. 特征工程
-    x = [extract_feature.extract_feature_from_img_path(img_path) for img_path in img_paths]
+    x = [extract_feature_from_img_path(img_path) for img_path in img_paths]
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=24)
 
     # 3. 模型对象的创建

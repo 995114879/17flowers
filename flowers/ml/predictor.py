@@ -2,12 +2,11 @@
 预测器
 """
 import os.path
-import numpy as np
 import joblib
 from sklearn.linear_model import LogisticRegression
 
-from ..tools import extract_feature
 
+from . import extract_feature_from_img_path
 
 class Predictor:
     def __init__(self, algo_path):
@@ -29,7 +28,7 @@ class Predictor:
         if not os.path.exists(img_path):
             return {'code': 1, 'msg': f'给定图像路径不存在:{img_path}'}
         # 1. 图像数据加载并转换
-        x = extract_feature.extract_feature_from_img_path(img_path)
+        x = extract_feature_from_img_path(img_path)
 
         # 2. 模型预测
         y_idx = self.algo.predict([x])[0]
