@@ -44,7 +44,7 @@ class Predictor:
         y_proba = torch.softmax(y_score, dim=0).numpy()
         y_proba_idx = list(zip(y_proba, range(len(y_proba))))
         y_proba_idx = sorted(y_proba_idx, reverse=True, key=lambda t: t[0])
-        print(y_proba_idx)
+        # print(y_proba_idx)
 
         # 3. 获取预测类别值和概率值
         k = min(max(k, 1), len(y_proba_idx))
