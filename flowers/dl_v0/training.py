@@ -1,11 +1,7 @@
-import os
 import sys
 import os
 
 import torch
-from sklearn.datasets import load_iris, load_wine
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from torch import nn
 import torch.optim as optim
 import numpy as np
@@ -13,11 +9,8 @@ import numpy as np
 from ..commons.metrics import Accuracy
 
 sys.path.append(os.path.abspath(os.path.join(__file__, "..", "..")))
-from sklearn.svm import SVC
-from sklearn.linear_model import LogisticRegression
-from sklearn import metrics
+
 from sklearn.model_selection import train_test_split
-import joblib
 
 from . import extract_feature_from_img_path
 
@@ -163,7 +156,8 @@ def run(
         {
             # 'net': net,  # 保存模型对象
             'net_param': net.state_dict(),
-            'total_epoch': total_epoch
+            'total_epoch': total_epoch,
+            'label_2_idx': label_2_idx
         },
         model_output_path
     )

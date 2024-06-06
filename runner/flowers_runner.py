@@ -42,11 +42,33 @@ def tt_dl_model_v0():
         from flowers.dl_v0 import training
         training.run(
             img_path_dir="../datas/17flowers",
-            total_epoch=10, batch_size=8,
+            total_epoch=3, batch_size=8,
             model_output_path="./output/flowers/dl_v0/model.pkl"
         )
 
-    training_model()
+    def predict_model():
+        from flowers.dl_v0 import predictor
+
+        p = predictor.Predictor(
+            algo_path=r'output/flowers/dl_v0/model.pkl'
+        )
+        r = p.predict(
+            # img_path=r'../datas/17flowers/c1/image_0001.jpg',
+            img_path=r'../datas/17flowers/c9/image_0706.jpg',
+            # img_path=r'../datas/17flowers/c8/image_0561.jpg',
+            k=3
+        )
+        print(r)
+
+    def client_model_with_shell():
+        from flowers.dl_v0 import shell_client
+        shell_client.run(
+            algo_path=r'output/flowers/dl_v0/model.pkl'
+        )
+
+    # training_model()
+    # predict_model()
+    client_model_with_shell()
 
 
 if __name__ == '__main__':
