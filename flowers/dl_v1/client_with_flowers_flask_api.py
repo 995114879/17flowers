@@ -35,7 +35,7 @@ def t1():
     if r.status_code == 200:
         print("请求服务器并成功返回")
         print(r.json())  # 将返回结果转换为json格式（python中就是字典对象）
-        print(r.text)
+        print(r.text)  # 文本字符串返回
     else:
         print(f"请求服务器网络异常：{r.status_code}")
 
